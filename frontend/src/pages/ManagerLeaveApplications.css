@@ -1,0 +1,281 @@
+/* pages/ManagerLeaveApplications.css */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.manager-leave-container {
+  display: flex;
+  flex-direction: row; /* Row for desktop, will change to column for mobile */
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f7f7f7;
+  overflow-x: hidden; /* Prevent horizontal overflow */
+  overflow-y: auto; /* Main vertical scrollbar for the page */
+}
+
+/* Holiday panel */
+.holiday-panel {
+  width: min(500px, 100%); /* Full width on mobile, up to 500px on larger screens */
+  background-color: #2c3e50;
+  color: white;
+  padding: clamp(10px, 3vw, 15px) clamp(10px, 3vw, 15px); /* Responsive padding */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Leave applications sidebar */
+.leave-applications-sidebar {
+  flex: 1;
+  padding: clamp(10px, 3vw, 15px); /* Responsive padding */
+}
+
+/* Back button */
+.back-button {
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  padding: clamp(6px, 2vw, 8px) clamp(12px, 3vw, 16px);
+  border-radius: 5px;
+  font-size: clamp(14px, 2.5vw, 16px); /* Responsive font size */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  width: auto;
+  margin-bottom: clamp(10px, 2vw, 15px);
+}
+
+.back-button:hover {
+  background-color: #1f6391;
+}
+
+/* Holiday panel heading */
+.holiday-panel h3 {
+  margin-bottom: clamp(15px, 3vw, 20px);
+  font-weight: 700;
+  font-size: clamp(18px, 3vw, 24px); /* Responsive font size */
+  border-bottom: 2px solid #2980b9;
+  padding-bottom: clamp(8px, 2vw, 10px);
+}
+
+/* Leave list */
+.leave-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.leave-item {
+  padding: clamp(8px, 2vw, 10px);
+  margin-bottom: clamp(8px, 2vw, 10px);
+  background-color: #ffad39;
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(8px, 2vw, 10px);
+  word-break: break-word; /* Prevent text overflow */
+}
+
+.leave-item div {
+  flex-grow: 1;
+  min-width: 0; /* Allow shrinking */
+}
+
+.leave-item span {
+  display: block;
+  margin-bottom: clamp(4px, 1vw, 5px);
+  font-size: clamp(14px, 2vw, 16px); /* Responsive font size */
+  word-break: break-word;
+}
+
+.button-group {
+  display: flex;
+  gap: clamp(8px, 2vw, 10px);
+  flex-shrink: 0;
+}
+
+.approve-button,
+.reject-button {
+  padding: clamp(4px, 1.5vw, 5px) clamp(8px, 2vw, 10px);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: clamp(12px, 2vw, 14px);
+  white-space: nowrap;
+}
+
+.approve-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.approve-button:hover {
+  background-color: #45a049;
+}
+
+.reject-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.reject-button:hover {
+  background-color: #d32f2f;
+}
+
+.no-results {
+  padding: clamp(8px, 2vw, 10px);
+  color: #666;
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+.error {
+  color: #f44336;
+  padding: clamp(8px, 2vw, 10px);
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+/* Holiday form */
+.holiday-form {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
+  gap: clamp(8px, 2vw, 10px);
+  margin-bottom: clamp(15px, 3vw, 20px);
+}
+
+.holiday-form input {
+  padding: clamp(8px, 2vw, 10px);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  flex: 1;
+  min-width: 120px; /* Minimum width for inputs */
+  font-size: clamp(14px, 2vw, 16px);
+}
+
+.holiday-form input[type="date"] {
+  max-width: 150px; /* Limit date input width */
+}
+
+.holiday-form button {
+  padding: clamp(8px, 2vw, 10px) clamp(15px, 3vw, 20px);
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: clamp(14px, 2vw, 16px);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.holiday-form button:hover {
+  background-color: #45a049;
+}
+
+/* Holiday list */
+.holiday-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 60vh; /* Limit height for vertical scrollbar */
+  overflow-y: auto; /* Vertical scroll only */
+  overflow-x: hidden; /* No horizontal scroll */
+}
+
+.holiday-item {
+  padding: clamp(8px, 2vw, 10px);
+  margin-bottom: clamp(8px, 2vw, 10px);
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(8px, 2vw, 10px);
+  word-break: break-word;
+}
+
+.holiday-item span {
+  flex-grow: 1;
+  font-size: clamp(14px, 2vw, 16px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.delete-button {
+  padding: clamp(4px, 1.5vw, 5px) clamp(8px, 2vw, 10px);
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: clamp(12px, 2vw, 14px);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 768px) {
+  .manager-leave-container {
+    flex-direction: column; /* Stack panels vertically on mobile */
+  }
+
+  .holiday-panel {
+    width: 100%; /* Full width on mobile */
+    padding: clamp(8px, 2.5vw, 12px);
+  }
+
+  .leave-applications-sidebar {
+    padding: clamp(8px, 2.5vw, 12px);
+  }
+
+  .holiday-form {
+    flex-direction: column; /* Stack form inputs vertically */
+    gap: clamp(6px, 2vw, 8px);
+  }
+
+  .holiday-form input,
+  .holiday-form input[type="date"] {
+    max-width: 100%; /* Full width for inputs on mobile */
+    min-width: 100%;
+  }
+
+  .leave-item {
+    flex-direction: column; /* Stack content vertically */
+    align-items: flex-start;
+  }
+
+  .button-group {
+    width: 100%; /* Full width for buttons */
+    justify-content: flex-start;
+  }
+
+  .approve-button,
+  .reject-button,
+  .holiday-form button,
+  .delete-button {
+    width: 100%; /* Full-width buttons on mobile */
+    text-align: center;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .holiday-panel {
+    width: min(400px, 40vw); /* Slightly smaller panel for tablets */
+  }
+
+  .leave-item {
+    flex-wrap: wrap; /* Allow wrapping if content is too wide */
+  }
+
+  .holiday-form input {
+    min-width: 100px; /* Slightly smaller inputs */
+  }
+}

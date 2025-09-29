@@ -1,0 +1,249 @@
+/* Full-page wrapper */
+.auth-wrapper {
+  height: 100vh;
+  /* Use a subtle, fixed background for better glassmorphism contrast */
+  background: url("https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
+    no-repeat center center fixed; /* Added 'fixed' for desktop scroll effect */
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: auto; /* Allow scrolling if content overflows */
+  padding: 20px; /* Add padding for mobile view */
+}
+
+/* Dark transparent overlay */
+.auth-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7); /* Slightly darker overlay */
+  backdrop-filter: blur(10px); /* Slightly stronger blur */
+  z-index: 0; /* Ensure overlay stays behind the container */
+}
+
+/* Container */
+.cont {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px; /* Slightly reduced padding */
+  border-radius: 25px; /* More rounded corners */
+  backdrop-filter: blur(20px); /* Stronger glass effect */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+  width: 100%;
+  max-width: 450px; /* Optimal width for a standard form */
+  animation: fadeIn 0.8s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle white border for depth */
+}
+
+/* Headings */
+.form h2 {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 30px;
+  font-size: 30px; /* Slightly smaller, but still bold */
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Paragraphs */
+.form p {
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Labels */
+.form label {
+  display: block;
+  margin-bottom: 20px;
+  color: #fff;
+  font-weight: 500; /* Adjusted font weight */
+  font-size: 16px;
+}
+
+/* Inputs & Select */
+.form input,
+.form select {
+  width: 100%;
+  padding: 12px 16px; /* Reduced padding slightly */
+  margin-top: 5px; /* Space between span and input */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  outline: none;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transition: all 0.3s ease; /* Better 'all' transition */
+  appearance: none; /* Remove default select styles */
+}
+
+.form input:focus,
+.form select:focus {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 10px rgba(255, 152, 0, 1); /* Brighter focus glow */
+  border-color: #ff9800;
+}
+
+/* Styling read-only field (for SocialSignupComplete) */
+.form input[readonly] {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    cursor: default !important;
+    border-color: rgba(255, 255, 255, 0.1);
+    opacity: 0.8;
+}
+
+.form input::placeholder,
+.form select option {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Option styling for better readability on dark background */
+.form select option {
+    background: #111; /* Dark background for options */
+    color: #fff;
+    padding: 10px;
+}
+
+/* Buttons */
+.submit {
+  background: linear-gradient(135deg, #ff9800, #ff5722);
+  color: white;
+  padding: 15px;
+  font-size: 18px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.submit:hover {
+  transform: translateY(-2px); /* Lift button subtly */
+  background: linear-gradient(135deg, #e68900, #e64a19);
+  box-shadow: 0 6px 15px rgba(255, 152, 0, 0.4);
+}
+
+.submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Button layout */
+.form-buttons {
+  display: flex;
+  justify-content: center; /* Center buttons if more than one */
+  gap: 15px;
+  margin-top: 25px;
+}
+
+form > .submit {
+  width: 100%;
+  margin-top: 25px;
+}
+
+/* Forgot password link */
+.forgot-pass {
+  text-align: right;
+  font-size: 15px;
+  margin-bottom: 15px;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.forgot-pass:hover {
+  color: #ff9800;
+  text-decoration: underline;
+}
+
+/* Auth link */
+.auth-link {
+  text-align: center;
+  margin-top: 30px;
+  color: #fff;
+  font-size: 16px;
+}
+
+.auth-link a {
+  color: #ff9800;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.auth-link a:hover {
+  color: #ff5722;
+  text-decoration: underline;
+}
+
+/* Social login */
+.social-login {
+  margin-top: 35px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+.social-login p {
+  color: #fff;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.social-buttons button {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  padding: 12px; /* Slightly smaller button */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: 0; /* Ensures img is centered */
+}
+
+.social-buttons button:hover {
+  transform: scale(1.15);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+}
+
+.social-buttons img {
+  width: 30px; /* Slightly smaller icons */
+  height: 30px;
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Error/Message Styling */
+.form p[style*="color: red"] {
+    color: #ff5722 !important;
+    font-weight: 600;
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #ff5722;
+    border-radius: 8px;
+    background: rgba(255, 87, 34, 0.1);
+    text-align: center;
+}

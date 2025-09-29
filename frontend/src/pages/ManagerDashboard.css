@@ -1,0 +1,101 @@
+/* src/pages/ManagerDashboard.css */
+.manager-dashboard {
+  padding: 30px;
+  text-align: center;
+  background: linear-gradient(135deg, #f0f4ff, #e6f7ff);
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.search-box {
+  margin-bottom: 30px;
+}
+
+.search-box input {
+  padding: 10px 15px;
+  width: 320px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #aaa;
+  transition: 0.3s;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #4c9aff;
+  box-shadow: 0 0 8px rgba(76, 154, 255, 0.5);
+}
+
+.employee-card-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 cards per row */
+  gap: 40px 50px; /* 40px row gap, 50px column gap */
+  justify-items: center;
+}
+
+.employee-card {
+  color: white;
+  padding: 35px 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  width: 320px;   /* bigger width */
+  height: 220px;  /* bigger height */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  box-sizing: border-box;
+}
+
+.employee-card h3 {
+  font-size: 26px;       /* increased from 24px */
+  margin-bottom: 14px;
+  font-weight: 700;
+  color: inherit;        /* inherit from card color */
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6); /* subtle shadow for readability */
+}
+
+.employee-card p {
+  font-size: 18px;       /* increased from 16px */
+  opacity: 0.95;
+  font-weight: 600;
+  color: inherit;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+
+/* Hover effect */
+.employee-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* Odd cards: Blue Gray gradient */
+.employee-card:nth-child(odd) {
+  background: linear-gradient(135deg, #6699CC, #8CA6DB);
+  color: #222; /* darker text for contrast */
+  text-shadow: none;
+  box-shadow: 0 5px 15px rgba(102, 153, 204, 0.4);
+}
+
+.employee-card:nth-child(odd):hover {
+  background: linear-gradient(135deg, #7A9FD4, #A3B8E1);
+  box-shadow: 0 10px 30px rgba(130, 170, 220, 0.6);
+}
+
+/* Even cards: Sapphire Blue gradient */
+.employee-card:nth-child(even) {
+  background: linear-gradient(135deg, #0F52BA, #0B3B91);
+  box-shadow: 0 5px 15px rgba(15, 82, 186, 0.6);
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+}
+
+.employee-card:nth-child(even):hover {
+  background: linear-gradient(135deg, #155ECF, #0F52BA);
+  box-shadow: 0 10px 30px rgba(20, 94, 207, 0.8);
+}

@@ -1,0 +1,141 @@
+/* components/LeaveForm.css */
+.leave-form-page {
+
+  height: 100vh; /* Use full viewport height */
+  width: 100%; /* Use full viewport width */
+  display: flex;
+  justify-content: center;
+  align-items: stretch; /* Stretch children to fill height */
+  padding: 0; /* Remove padding to maximize space */
+  margin: 0; /* Remove default margins */
+  box-sizing: border-box;
+}
+
+.leave-form-container {
+  display: flex;
+  height: 100%; /* Take full height of parent */
+  width: 100%; /* Take full width */
+  max-width: none; /* Remove max-width constraint */
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for readability */
+  border-radius: 0; /* Remove border radius for full edge-to-edge */
+}
+
+.leave-form-sidebar {
+  width: 600px; /* Fixed width for form sidebar */
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px;
+  overflow-y: auto; /* Scroll if content overflows */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.leave-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%; /* Ensure form takes full height */
+}
+
+.leave-form h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1; /* Allow form groups to grow */
+}
+
+.form-group label {
+  font-weight: bold;
+  color: #fff;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  color: #333;
+  width: 80%; /* Full width within form group */
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+button[type="submit"] {
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 40%; /* Full width button */
+  
+}
+
+button[type="submit"]:hover {
+  background-color: #025b06;
+}
+
+.error {
+  color: #f44336;
+  text-align: center;
+}
+
+.leave-applications-panel {
+  flex: 1; /* Take remaining space */
+  padding: 20px;
+  overflow-y: auto; /* Scroll if leave list overflows */
+  background-color: #fff; /* White background for contrast */
+}
+
+.leave-applications-panel h2 {
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: bold;
+}
+
+.leave-list {
+  list-style: none;
+  padding: 0;
+  height: 100%; /* Ensure list takes full height */
+}
+
+.leave-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leave-item div {
+  flex-grow: 1;
+}
+
+.leave-item span {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.loading-text,
+.no-leaves-text {
+  text-align: center;
+  color: #666;
+}

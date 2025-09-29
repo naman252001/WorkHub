@@ -1,0 +1,326 @@
+/* components/Attendance.css */
+.attendance-page {
+  background-color: #f7f7f7; /* Slightly grey background */
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  gap: 30px;
+  box-sizing: border-box;
+}
+
+.left-content {
+  flex: 2; /* More space for left side */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.back-button {
+  background-color: darkblue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  width: auto;
+  margin-bottom: 15px;
+}
+
+.back-btn:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+.back-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+
+
+.present-btn {
+  background-color: darkgreen;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  margin: 20px;
+}
+
+.present-btn:hover {
+  background-color: rgb(2, 141, 2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+.present-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.calendar-wrapper {
+  padding: 30px;
+  background-color: #e5e7eb; /* Grey background for calendar */
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 0 auto;
+  border: 3px solid #007bff;
+}
+
+.attendance-summary {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  font-weight: 500;
+}
+
+.attendance-summary p {
+  margin: 8px 0;
+}
+
+/* Set month and year text to black */
+.react-calendar__navigation__label {
+  color: #000000 !important; /* Force black color for month/year */
+}
+
+.react-calendar__navigation__label:hover,
+.react-calendar__navigation__label:focus {
+  color: #000000 !important; /* Maintain black on hover/focus */
+}
+
+.leave-cards-wrapper {
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  max-width: 700px;
+  margin: 0 auto;
+  border: 3px solid #4caf50;
+}
+
+.card-row {
+  display: flex;
+  gap: 25px;
+  justify-content: space-around;
+}
+
+.leave-card {
+  flex: 0 1 240px;
+  padding: 30px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  max-width: 280px;
+  border: 2px solid #ccc;
+}
+
+.leave-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.leave-card h4 {
+  font-size: 22px;
+  color: #333;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.leave-card p {
+  font-size: 28px;
+  color: #4caf50;
+  font-weight: 700;
+}
+
+.leave-card.sick { border-left: 6px solid #3b82f6; }
+.leave-card.casual { border-left: 6px solid #22c55e; }
+.leave-card.vacation { border-left: 5px solid #eab308; }
+.leave-card.other { border-left: 6px solid #8b5cf6; }
+
+.actions {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.actions button {
+  padding: 14px 35px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.actions button:hover {
+  background-color: #45a049;
+  transform: translateY(-3px);
+}
+
+.right-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.holiday-section {
+  padding: 25px;
+  background-color: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.holiday-section h3 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.holiday-form {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.holiday-form input {
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.holiday-form button {
+  padding: 12px 25px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.holiday-form button:hover {
+  background-color: #45a049;
+}
+
+.holiday-list {
+  list-style: none;
+  padding: 0;
+}
+
+.holiday-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-size: 16px;
+}
+
+.holiday-list button {
+  padding: 6px 12px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.holiday-list button:hover {
+  background-color: #d32f2f;
+}
+
+.error {
+  color: #f44336;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+/* Calendar styles */
+.react-calendar {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+}
+
+.react-calendar__tile {
+  padding: 12px;
+  border-radius: 50%;
+  color: #333;
+  font-weight: 600;
+  border: 1px solid #ddd;
+}
+
+.react-calendar__tile.present {
+  background: #28a745;
+  color: white;
+  border-color: #218838;
+}
+
+.react-calendar__tile.absent {
+  background: #dc3545;
+  color: white;
+  border-color: #c82333;
+}
+
+.react-calendar__tile.weekend-holiday {
+  background: #6c757d;
+  color: white;
+  opacity: 0.7;
+  border-color: #5a6268;
+}
+
+.react-calendar__tile--active {
+  background: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
+
+.react-calendar__tile--now {
+  border: 3px solid #007bff;
+}
+
+/* In Attendance.css */
+
+.react-calendar__tile.present {
+  background-color: #a7f3d0; /* A nice light green */
+  color: #065f46;
+}
+
+.react-calendar__tile.absent {
+  background-color: #fecaca; /* A light red */
+  color: #991b1b;
+}
+
+.react-calendar__tile.weekend-holiday {
+  background-color: #e5e7eb; /* A light grey */
+  color: #4b5563;
+}

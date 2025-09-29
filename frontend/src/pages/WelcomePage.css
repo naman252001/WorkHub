@@ -1,0 +1,216 @@
+/* Container with background image */
+.welcome-container {
+  background: url("https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0") no-repeat center center/cover;
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dark overlay for better text visibility */
+.welcome-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Transparent navbar-like header */
+.welcome-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 30px;
+  background: rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(6px);
+}
+
+/* Logo */
+.welcome-logo img {
+  height: 50px;
+}
+
+/* Title in center */
+.welcome-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+  text-align: center;
+  flex: 1;
+}
+
+/* Buttons on right */
+.welcome-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-login,
+.btn-signup {
+  padding: 8px 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.btn-login {
+  background-color: rgba(70, 130, 180, 0.9);
+  color: white;
+}
+
+.btn-login:hover {
+  background-color: rgba(70, 130, 180, 1);
+}
+
+.btn-signup {
+  background-color: rgba(176, 196, 222, 0.9);
+  color: black;
+}
+
+.btn-signup:hover {
+  background-color: rgba(176, 196, 222, 1);
+}
+
+/* Intro section */
+.welcome-intro {
+  text-align: center;
+  margin: 40px auto;
+  max-width: 700px;
+}
+
+.welcome-intro h2 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #f5f5f5;
+}
+
+.welcome-intro p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #e0e0e0;
+}
+
+/* Features grid with staggered second row */
+.welcome-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  padding: 20px;
+  max-width: 1100px;
+  margin: auto;
+  position: relative;
+}
+
+/* Feature card */
+.feature-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 15px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 280px; /* bigger size */
+}
+
+.feature-card:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Feature icons */
+.feature-icon {
+  font-size: 50px;
+  margin-bottom: 15px;
+  color: #00d4ff;
+}
+
+/* Feature titles */
+.feature-card h3 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+/* Feature text */
+.feature-card p {
+  font-size: 16px;
+  font-weight: bold;
+  color: #dcdcdc;
+}
+
+/* Second row stagger effect */
+.feature-row-2:nth-child(4) {
+  grid-column: 1 / span 1; /* places under gap between 1st & 2nd */
+  justify-self: center;
+  margin-right: 10px;
+  width: 80%;
+}
+
+
+.feature-row-2:nth-child(5) {
+  grid-column: 2 / span 2; /* places under gap between 2nd & 3rd */
+  justify-self: center;
+  width: 80%;
+}
+
+/* Footer styles */
+footer {
+  margin-top: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 15px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive - stack cards on small screens */
+@media (max-width: 768px) {
+  .welcome-features {
+    grid-template-columns: 1fr;
+  }
+  .feature-row-2 {
+    grid-column: auto;
+    width: 100%;
+  }
+}
+
+
+/* First row - stays 3 cards */
+.first-row {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Second row - 2 cards centered */
+.second-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+  justify-content: center;
+  max-width: 750px; /* prevents it from stretching full width */
+  margin: auto;
+}
+.welcome-brand {
+  text-align: center;
+  flex: 1; /* make it take available space */
+}
+
+.welcome-title {
+  font-size: 32px;
+  color: #f9f8f8;
+  margin: 0;
+  display: inline-block;
+}
+
+.welcome-slogan {
+  font-size: 14px;
+  color: #fffcfc;
+  font-weight: normal;
+  margin-left: 8px;
+}

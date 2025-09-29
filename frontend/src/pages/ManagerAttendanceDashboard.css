@@ -1,0 +1,177 @@
+/* pages/ManagerAttendanceDashboard.css */
+
+/* General Styles */
+.manager-attendance-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  background-color: #f7f7f7;
+}
+
+.manager-sidebar {
+  width: 300px;
+  background-color: #2c3e50;
+  color: white;
+  padding: 20px 15px;
+  overflow-y: auto;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  width: auto;
+  margin-bottom: 15px;
+}
+
+.manager-sidebar h3 {
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 1.5rem;
+  border-bottom: 2px solid #2980b9;
+  padding-bottom: 10px;
+}
+
+.back-button:hover {
+  background-color: #1f6391;
+}
+
+.employee-search {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.employee-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.employee-list-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #ffad39;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.employee-list-item:hover,
+.employee-list-item.selected {
+  background-color: #040404;
+}
+
+.present {
+  color: green;
+  font-weight: bold;
+}
+
+.absent {
+  color: red;
+  font-weight: bold;
+}
+
+.no-results {
+  padding: 10px;
+  color: #666;
+}
+
+.manager-leave-panel {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* ✅ NEW FLEX CONTAINER FOR THE HEADER */
+.manager-leave-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.manager-leave-header h2 {
+  margin: 0;
+  color: #333;
+  font-weight: bold;
+  border-bottom: 2px solid #333;
+  padding-bottom: 5px;
+}
+
+/* ✅ UPDATED BUTTON STYLES: Removed absolute positioning */
+.leave-applications-button {
+  display: block;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* position: absolute;  ✅ REMOVED THIS LINE */
+  /* right: 0; ✅ REMOVED THIS LINE */
+}
+
+.leave-applications-button:hover {
+  background-color: #45a049;
+}
+
+.month-group {
+  margin-bottom: 20px;
+}
+
+.month-title {
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.date-group {
+  margin-bottom: 15px;
+}
+
+.date-title {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.leaves-list {
+  list-style: none;
+  padding: 0;
+}
+
+.leave-item {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.leave-dates,
+.leave-reason,
+.leave-status {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.loading-text,
+.no-leaves-text {
+  font-size: 1.2rem;
+  color: #7f8c8d;
+  margin-top: 40px;
+  font-style: italic;
+  text-align: center;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
