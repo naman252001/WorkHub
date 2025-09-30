@@ -24,17 +24,24 @@ connectDB();
 const app = express();
 
 // ------------------------
+// CORS CONFIGURATION
+// ------------------------
+const FRONTEND_URL = "https://workhubbb.netlify.app"; // ✅ Your frontend URL
+
+const corsOptions = {
+  origin: FRONTEND_URL,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true,
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Handle preflight requests
+
+// ------------------------
 // Socket.IO Setup
 // ------------------------
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
-  cors: {
-    origin: process.env.NODE_ENV === 'production'
-      ? 'https://workhubbb.netlify.app' // ✅ Netlify frontend
-      : 'http://localhost:3000',
-    methods: ["GET", "POST"],
-    credentials: true,
-  },
+  cors: corsOptions,
 });
 
 // ------------------------
@@ -43,15 +50,7 @@ const io = new Server(httpServer, {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// CORS
-app.use(cors({
-  origin: process.env.NODE_ENV === 'production'
-    ? 'https://workhubbb.netlify.app'
-    : 'http://localhost:3000',
-  credentials: true,
-}));
-
-// Static files
+// Static files for default avatars and uploaded files
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -65,20 +64,22 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Rate limiter
 app.use(rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
 }));
 
-// Session config for Passport
+// ------------------------
+// SESSION CONFIGURATION FOR PASSPORT
+// ------------------------
 app.use(cookieParser());
 app.use(session({
     secret: process.env.SESSION_SECRET || 'your_super_secret_key',
     resave: false,
     saveUninitialized: false,
     cookie: { 
-        secure: process.env.NODE_ENV === 'production',
+        secure: process.env.NODE_ENV === 'production', // HTTPS only in production
         httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 24
+        maxAge: 1000 * 60 * 60 * 24 // 24 hours
     }
 }));
 
@@ -86,7 +87,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // ------------------------
-// Routes
+// ROUTES
 // ------------------------
 const authRoutes = require('./routes/authRoutes');
 const workRoutes = require('./routes/workRoutes'); 
@@ -109,7 +110,7 @@ app.use('/api/holidays', holidayRoutes);
 app.use("/test", testRoutes);
 
 // ------------------------
-// Socket.IO Logic
+// SOCKET.IO LOGIC
 // ------------------------
 const { markAttendance } = require('./controllers/attendanceController');
 
@@ -119,15 +120,23 @@ io.on('connection', (socket) => {
   socket.on('update_attendance', async ({ userId, status }) => {
     try {
       const req = { user: { _id: userId }, body: { status } };
-      const res = { status: () => ({ json: () => {} }), json: () => {} };
+      const res = {
+        status: (code) => ({ json: (data) => {} }),
+        json: (data) => {}
+      };
+      
       await markAttendance(req, res);
+
       io.emit('attendance_updated', { userId, status });
+
     } catch (error) {
-      console.error('Socket.IO Error:', error.message);
+      console.error('Socket.IO: Error updating attendance:', error.message);
     }
   });
 
-  socket.on('disconnect', () => console.log('❌ Client disconnected:', socket.id));
+  socket.on('disconnect', () => {
+    console.log('❌ Socket.IO: Client disconnected:', socket.id);
+  });
 });
 
 // ------------------------
@@ -155,7 +164,7 @@ app.use((err, req, res, next) => {
 });
 
 // ------------------------
-// Start server
+// START SERVER
 // ------------------------
 const PORT = process.env.PORT || 5000;
 httpServer.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
