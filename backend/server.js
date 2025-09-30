@@ -32,7 +32,7 @@ const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
   cors: {
     origin: process.env.NODE_ENV === 'production' 
-      ? 'https://yourdomain.com' 
+      ? 'https://workhubbb.netlify.app'   // ✅ your real frontend
       : 'http://localhost:3000',
     methods: ["GET", "POST"],
     credentials: true,
@@ -48,10 +48,11 @@ app.use(express.urlencoded({ extended: true }));
 // CORS
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? 'https://yourdomain.com' 
+    ? 'https://workhubbb.netlify.app'    // ✅ your real frontend
     : 'http://localhost:3000',
   credentials: true,
 }));
+
 
 // Static files for default avatars and uploaded files
 app.use("/public", express.static(path.join(__dirname, "public")));
