@@ -27,7 +27,7 @@ const Signup = () => {
     }
 
     try {
-      await axios.post("https://workhub-6jze.onrender.com/api/auth/signup", {
+      await axios.post("http://localhost:5000/api/auth/signup", {
         name: formData.name,
         email: formData.email,
         password: formData.password,
@@ -44,12 +44,12 @@ const Signup = () => {
 
   // 🔹 Google Signup
   const handleGoogleSignup = () => {
-    window.location.href = "https://workhub-6jze.onrender.com/api/auth/google";
+    window.location.href = "http://localhost:5000/api/auth/google";
   };
 
   // 🔹 Microsoft Signup
   const handleMicrosoftSignup = () => {
-    window.location.href = "https://workhub-6jze.onrender.com/api/auth/microsoft";
+    window.location.href = "http://localhost:5000/api/auth/microsoft";
   };
 
   return (

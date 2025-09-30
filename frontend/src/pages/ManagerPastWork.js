@@ -26,7 +26,7 @@ const ManagerPastWork = () => {
     const fetchEmployees = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("https://workhub-6jze.onrender.com/api/users/employees", {
+        const res = await axios.get("http://localhost:5000/api/users/employees", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setEmployees(res.data);
@@ -55,7 +55,7 @@ const ManagerPastWork = () => {
       setLoadingTasks(true);
       try {
         const token = localStorage.getItem("token");
-        const url = `https://workhub-6jze.onrender.com/api/tasks/past/${selectedEmployeeId}`;
+        const url = `http://localhost:5000/api/tasks/past/${selectedEmployeeId}`;
 
         const res = await axios.get(url, {
           headers: { Authorization: `Bearer ${token}` },

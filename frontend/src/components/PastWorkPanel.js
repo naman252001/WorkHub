@@ -21,7 +21,7 @@ const PastWorkPanel = ({ darkMode }) => {
     }
 
     try {
-      const response = await axios.get("https://workhub-6jze.onrender.com/api/work", {
+      const response = await axios.get("http://localhost:5000/api/work", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -108,7 +108,7 @@ const PastWorkPanel = ({ darkMode }) => {
 
     try {
       const response = await axios.delete(
-        `https://workhub-6jze.onrender.com/api/work/${logId}/task/${taskIndex}`,
+        `http://localhost:5000/api/work/${logId}/task/${taskIndex}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

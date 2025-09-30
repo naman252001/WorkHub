@@ -13,7 +13,7 @@ const ManagerDashboard = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          "https://workhub-6jze.onrender.com/api/users/employees", // ✅ Corrected URL
+          "http://localhost:5000/api/users/employees", // ✅ Corrected URL
           {
             headers: {
               Authorization: `Bearer ${token}`,

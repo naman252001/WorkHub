@@ -21,9 +21,7 @@ const Login = ({ onLogin }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://workhub-6jze.onrender.com/api/auth/login", credentials,
-      { withCredentials: true }
-      );
+      const res = await axios.post("http://localhost:5000/api/auth/login", credentials);
       if (res.data.success) {
         alert("Password verified! OTP sent to your email.");
         setOtpMode(true);
@@ -39,10 +37,10 @@ const Login = ({ onLogin }) => {
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://workhub-6jze.onrender.com/api/auth/verify-otp", {
-        email: credentials.email,otp},
-        { withCredentials: true }
-      );
+      const res = await axios.post("http://localhost:5000/api/auth/verify-otp", {
+        email: credentials.email,
+        otp,
+      });
       const { token, user } = res.data;
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
@@ -56,11 +54,9 @@ const Login = ({ onLogin }) => {
   // Step 3: Resend OTP
   const handleResendOtp = async () => {
     try {
-      const res = await axios.post("https://workhub-6jze.onrender.com/api/auth/resend-otp", {
-        email: credentials.email},
-        { withCredentials: true } // ✅ Important
-
-      );
+      const res = await axios.post("http://localhost:5000/api/auth/resend-otp", {
+        email: credentials.email,
+      });
       if (res.data.success) {
         alert("New OTP sent to your email!");
         setTimeLeft(30); // restart countdown
@@ -155,7 +151,7 @@ const Login = ({ onLogin }) => {
           {/* <div className="social-login">
             <p>Or login with:</p>
             <div className="social-buttons">
-              <button onClick={() => window.location.href = "https://workhub-6jze.onrender.com/api/auth/google"}>
+              <button onClick={() => window.location.href = "http://localhost:5000/api/auth/google"}>
                 <img src="https://img.icons8.com/color/48/google-logo.png" alt="Google" />
               </button>
             </div>

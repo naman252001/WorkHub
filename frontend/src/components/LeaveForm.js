@@ -5,7 +5,7 @@ import axios from 'axios';
 import './LeaveForm.css';
 
 // Use the correct backend URL
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://workhub-6jze.onrender.com';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const LeaveForm = () => {
   const navigate = useNavigate();
