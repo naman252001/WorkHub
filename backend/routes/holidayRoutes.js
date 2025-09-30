@@ -1,7 +1,7 @@
 // routes/holidayRoutes.js
 const express = require('express');
 const router = express.Router();
-const { protect, managerOnly } = require('../middleware/authmiddleware');
+const { protect, managerOnly } = require('../middleware/authMiddleware');
 const { getHolidays, addHoliday, deleteHoliday } = require('../controllers/holidayController');
 
 router.get('/', protect, getHolidays); // Get all holidays (accessible to all authenticated users)

@@ -1,7 +1,7 @@
 // routes/leaveRoutes.js
 const express = require('express');
 const router = express.Router();
-const { protect, managerOnly } = require('../middleware/authmiddleware');
+const { protect, managerOnly } = require('../middleware/authMiddleware');
 const {
   applyLeave,
   getLeaves,
