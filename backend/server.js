@@ -28,16 +28,17 @@ const app = express();
 // ------------------------
 // Socket.IO Setup
 // ------------------------
+
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000'; 
+
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
-  cors: {
-    origin: process.env.NODE_ENV === 'production' 
-      ? 'https://yourdomain.com' 
-      : 'http://localhost:3000',
-    methods: ["GET", "POST"],
-    credentials: true,
-  },
-});
+ cors: {
+  origin: FRONTEND_URL, // 👈 UPDATED: Use the defined variable
+  methods: ["GET", "POST"],
+  credentials: true,
+ },
+})
 
 // ------------------------
 // Middleware
@@ -47,10 +48,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // CORS
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? 'https://yourdomain.com' 
-    : 'http://localhost:3000',
-  credentials: true,
+ origin: FRONTEND_URL, // 👈 UPDATED: Use the defined variable
+ credentials: true,
 }));
 
 // Static files for default avatars and uploaded files
