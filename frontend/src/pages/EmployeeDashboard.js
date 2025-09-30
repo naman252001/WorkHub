@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./EmployeeDashboard.css";
 
+
+
+// Use the correct backend URL
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
+
 const EmployeeDashboard = () => {
   const [tasks, setTasks] = useState([]);
   const [taskName, setTaskName] = useState("");
@@ -72,7 +78,7 @@ const EmployeeDashboard = () => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/work/save",
+        `${API_BASE_URL}/api/work/save`,
         {
           userId: user._id || user.id,
           date,

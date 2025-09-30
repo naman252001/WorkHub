@@ -4,6 +4,9 @@ import Papa from "papaparse";
 import axios from "axios";
 import "./EmployeeDetails.css";
 
+// Use the correct backend URL
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const EmployeeDetails = () => {
   const { id } = useParams(); // employee ID
   const [tasks, setTasks] = useState([]);
@@ -15,7 +18,7 @@ const EmployeeDetails = () => {
   const fetchEmployeeName = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/users/${id}`,
+        `${API_BASE_URL}/api/users/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -30,7 +33,7 @@ const EmployeeDetails = () => {
   const fetchTodayTasks = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/tasks/today/${id}`,
+        `${API_BASE_URL}/api/tasks/today/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./ManagerDashboard.css";
 
+// Use the correct backend URL
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const ManagerDashboard = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [employees, setEmployees] = useState([]);
@@ -13,7 +16,7 @@ const ManagerDashboard = () => {
       try {
         const token = localStorage.getItem("token");
         const res = await axios.get(
-          "http://localhost:5000/api/users/employees", // ✅ Corrected URL
+          `${API_BASE_URL}/api/users/employees`, // ✅ Corrected URL
           {
             headers: {
               Authorization: `Bearer ${token}`,

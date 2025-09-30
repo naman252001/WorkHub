@@ -5,6 +5,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./ManagerPastWork.css";
 
+// Use the correct backend URL
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const ManagerPastWork = () => {
   const navigate = useNavigate();
 
@@ -26,7 +29,7 @@ const ManagerPastWork = () => {
     const fetchEmployees = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get("http://localhost:5000/api/users/employees", {
+        const res = await axios.get(`${API_BASE_URL}/api/users/employees`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setEmployees(res.data);
@@ -55,7 +58,7 @@ const ManagerPastWork = () => {
       setLoadingTasks(true);
       try {
         const token = localStorage.getItem("token");
-        const url = `http://localhost:5000/api/tasks/past/${selectedEmployeeId}`;
+        const url = `${API_BASE_URL}/api/tasks/past/${selectedEmployeeId}`;
 
         const res = await axios.get(url, {
           headers: { Authorization: `Bearer ${token}` },

@@ -3,6 +3,9 @@ import { useLocation, useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import "./AuthForm.css";
 
+// Use the correct backend URL
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const SocialSignupComplete = ({ onLogin }) => {
     const location = useLocation();
     const navigate = useNavigate();
@@ -77,7 +80,7 @@ const SocialSignupComplete = ({ onLogin }) => {
         try {
             // 2. Submit the FINAL data to the new backend endpoint
             const response = await axios.post(
-                `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/auth/complete-social-signup`, 
+                `${API_BASE_URL}/api/auth/complete-social-signup`, 
                 {
                     name: formData.name,
                     email: formData.email,

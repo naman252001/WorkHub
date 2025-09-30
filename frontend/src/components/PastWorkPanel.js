@@ -5,6 +5,10 @@ import 'jspdf-autotable';
 import Papa from 'papaparse';
 import axios from 'axios';
 
+// Use the correct backend URL
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
+
 const PastWorkPanel = ({ darkMode }) => {
   const [pastWorkData, setPastWorkData] = useState({});
   const [filteredData, setFilteredData] = useState({});
@@ -21,7 +25,7 @@ const PastWorkPanel = ({ darkMode }) => {
     }
 
     try {
-      const response = await axios.get("http://localhost:5000/api/work", {
+      const response = await axios.get(`${API_BASE_URL}/api/work`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -108,7 +112,7 @@ const PastWorkPanel = ({ darkMode }) => {
 
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/work/${logId}/task/${taskIndex}`,
+        `${API_BASE_URL}/api/work/${logId}/task/${taskIndex}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

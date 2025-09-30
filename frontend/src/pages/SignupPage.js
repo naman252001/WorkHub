@@ -3,6 +3,9 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./AuthForm.css";
 
+// Use the correct backend URL
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const Signup = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -27,7 +30,7 @@ const Signup = () => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/auth/signup", {
+      await axios.post(`${API_BASE_URL}/api/auth/signup`, {
         name: formData.name,
         email: formData.email,
         password: formData.password,
@@ -44,12 +47,12 @@ const Signup = () => {
 
   // 🔹 Google Signup
   const handleGoogleSignup = () => {
-    window.location.href = "http://localhost:5000/api/auth/google";
+    window.location.href = `${API_BASE_URL}/api/auth/google`;
   };
 
   // 🔹 Microsoft Signup
   const handleMicrosoftSignup = () => {
-    window.location.href = "http://localhost:5000/api/auth/microsoft";
+    window.location.href = `${API_BASE_URL}/api/auth/microsoft`;
   };
 
   return (

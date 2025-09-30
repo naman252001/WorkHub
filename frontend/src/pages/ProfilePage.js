@@ -4,6 +4,9 @@ import Cropper from "react-easy-crop";
 import { getCroppedImg } from "../utils/getCroppedImg"; // ✅ utility function
 import "./ProfilePage.css";
 
+// Use the correct backend URL
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
@@ -36,7 +39,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/profile", {
+        const res = await axios.get(`${API_BASE_URL}/api/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(res.data);
@@ -60,7 +63,7 @@ const ProfilePage = () => {
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put("http://localhost:5000/api/profile", formData, {
+      const res = await axios.put(`${API_BASE_URL}/api/profile`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(res.data.user);
@@ -88,7 +91,7 @@ const ProfilePage = () => {
       data.append("profilePicture", croppedBlob);
 
       const res = await axios.post(
-        "http://localhost:5000/api/profile/picture",
+        `${API_BASE_URL}/api/profile/picture`,
         data,
         {
           headers: {
@@ -110,7 +113,7 @@ const ProfilePage = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/change-password",
+        `${API_BASE_URL}/api/auth/change-password`,
         passwordData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -126,7 +129,7 @@ const ProfilePage = () => {
   const handleAvatarSelect = async (avatar) => {
     try {
       const res = await axios.put(
-        "http://localhost:5000/api/profile/avatar",
+        `${API_BASE_URL}/api/profile/avatar`,
         { avatar },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -143,7 +146,7 @@ const ProfilePage = () => {
     if (!pic) return "/avatars/default.png";
     if (pic.startsWith("/avatars/")) return pic; // public avatars
     if (pic.startsWith("http")) return pic; // absolute backend URL
-    return `http://localhost:5000${pic}`; // uploaded files from backend
+    return `${API_BASE_URL}${pic}`; // uploaded files from backend
   };
 
   if (!token) return <div>Please log in to view your profile.</div>;
