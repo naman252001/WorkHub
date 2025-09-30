@@ -15,7 +15,7 @@ const EmployeeDetails = () => {
   const fetchEmployeeName = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/users/${id}`,
+        `https://workhub-6jze.onrender.com/api/users/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -30,7 +30,7 @@ const EmployeeDetails = () => {
   const fetchTodayTasks = async () => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/tasks/today/${id}`,
+        `https://workhub-6jze.onrender.com/api/tasks/today/${id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

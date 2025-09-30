@@ -36,7 +36,7 @@ const ProfilePage = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/profile", {
+        const res = await axios.get("https://workhub-6jze.onrender.com/api/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(res.data);
@@ -60,7 +60,7 @@ const ProfilePage = () => {
   const handleUpdateProfile = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put("http://localhost:5000/api/profile", formData, {
+      const res = await axios.put("https://workhub-6jze.onrender.com/api/profile", formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUser(res.data.user);
@@ -88,7 +88,7 @@ const ProfilePage = () => {
       data.append("profilePicture", croppedBlob);
 
       const res = await axios.post(
-        "http://localhost:5000/api/profile/picture",
+        "https://workhub-6jze.onrender.com/api/profile/picture",
         data,
         {
           headers: {
@@ -110,7 +110,7 @@ const ProfilePage = () => {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/auth/change-password",
+        "https://workhub-6jze.onrender.com/api/auth/change-password",
         passwordData,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -126,7 +126,7 @@ const ProfilePage = () => {
   const handleAvatarSelect = async (avatar) => {
     try {
       const res = await axios.put(
-        "http://localhost:5000/api/profile/avatar",
+        "https://workhub-6jze.onrender.com/api/profile/avatar",
         { avatar },
         { headers: { Authorization: `Bearer ${token}` } }
       );

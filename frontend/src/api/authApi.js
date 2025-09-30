@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Create an axios instance with a base URL
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000', // Fallback to localhost:5000 for development
+  baseURL: process.env.REACT_APP_API_URL || 'https://workhub-6jze.onrender.com', // Fallback to localhost:5000 for development
 });
 
 // Link-based Forgot Password API calls (Renamed for clarity)

@@ -72,7 +72,7 @@ const EmployeeDashboard = () => {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/work/save",
+        "https://workhub-6jze.onrender.com/api/work/save",
         {
           userId: user._id || user.id,
           date,

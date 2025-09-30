@@ -132,7 +132,7 @@ const SocialSignupComplete = ({ onLogin }) => {
                     <form onSubmit={handleSubmit}>
                         
                         {/* Read-only fields */}
-                        <label>
+                        {/* <label>
                             <span>Email </span>
                             <input
                                 type="text"
@@ -141,7 +141,7 @@ const SocialSignupComplete = ({ onLogin }) => {
                                 readOnly
                                 style={{backgroundColor: '#f0f0f0', cursor: 'default'}}
                             />
-                        </label>
+                        </label> */}
 
                         {/* Role Selection */}
                         <label>

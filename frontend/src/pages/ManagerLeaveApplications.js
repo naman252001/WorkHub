@@ -20,12 +20,12 @@ const ManagerLeaveApplications = () => {
           return;
         }
 
-        const leaveRes = await axios.get("http://localhost:5000/api/leave/manager?status=pending", {
+        const leaveRes = await axios.get("https://workhub-6jze.onrender.com/api/leave/manager?status=pending", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setLeaveRequests(leaveRes.data);
 
-        const holidayRes = await axios.get("http://localhost:5000/api/holidays", {
+        const holidayRes = await axios.get("https://workhub-6jze.onrender.com/api/holidays", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setHolidays(holidayRes.data);
@@ -40,7 +40,7 @@ const ManagerLeaveApplications = () => {
   const handleApprove = async (leaveId) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.put(`http://localhost:5000/api/leave/manager/${leaveId}`, { status: 'approved' }, {
+      const res = await axios.put(`https://workhub-6jze.onrender.com/api/leave/manager/${leaveId}`, { status: 'approved' }, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setLeaveRequests(leaveRequests.map(lr => lr._id === leaveId ? res.data.leave : lr));
@@ -54,7 +54,7 @@ const ManagerLeaveApplications = () => {
   const handleReject = async (leaveId) => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.put(`http://localhost:5000/api/leave/manager/${leaveId}`, { status: 'rejected' }, {
+      const res = await axios.put(`https://workhub-6jze.onrender.com/api/leave/manager/${leaveId}`, { status: 'rejected' }, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setLeaveRequests(leaveRequests.map(lr => lr._id === leaveId ? res.data.leave : lr));
@@ -69,7 +69,7 @@ const ManagerLeaveApplications = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.post("http://localhost:5000/api/holidays", newHoliday, {
+      const res = await axios.post("https://workhub-6jze.onrender.com/api/holidays", newHoliday, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setHolidays([...holidays, res.data]);
@@ -84,7 +84,7 @@ const ManagerLeaveApplications = () => {
   const handleDeleteHoliday = async (id) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/holidays/${id}`, {
+      await axios.delete(`https://workhub-6jze.onrender.com/api/holidays/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setHolidays(holidays.filter(h => h._id !== id));

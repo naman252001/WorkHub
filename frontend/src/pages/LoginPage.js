@@ -21,7 +21,7 @@ const Login = ({ onLogin }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", credentials);
+      const res = await axios.post("https://workhub-6jze.onrender.com/api/auth/login", credentials);
       if (res.data.success) {
         alert("Password verified! OTP sent to your email.");
         setOtpMode(true);
@@ -37,7 +37,7 @@ const Login = ({ onLogin }) => {
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/verify-otp", {
+      const res = await axios.post("https://workhub-6jze.onrender.com/api/auth/verify-otp", {
         email: credentials.email,
         otp,
       });
@@ -54,7 +54,7 @@ const Login = ({ onLogin }) => {
   // Step 3: Resend OTP
   const handleResendOtp = async () => {
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/resend-otp", {
+      const res = await axios.post("https://workhub-6jze.onrender.com/api/auth/resend-otp", {
         email: credentials.email,
       });
       if (res.data.success) {
@@ -151,7 +151,7 @@ const Login = ({ onLogin }) => {
           {/* <div className="social-login">
             <p>Or login with:</p>
             <div className="social-buttons">
-              <button onClick={() => window.location.href = "http://localhost:5000/api/auth/google"}>
+              <button onClick={() => window.location.href = "https://workhub-6jze.onrender.com/api/auth/google"}>
                 <img src="https://img.icons8.com/color/48/google-logo.png" alt="Google" />
               </button>
             </div>
