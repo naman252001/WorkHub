@@ -9,8 +9,6 @@ const passport = require("passport");
 const path = require('path');
 const http = require('http');
 const { Server } = require('socket.io');
-
-// 🚨 NEW IMPORTS FOR SESSION SUPPORT 🚨
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 
@@ -31,8 +29,8 @@ const app = express();
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: process.env.NODE_ENV === 'production' 
-      ? 'https://workhubbb.netlify.app'   // ✅ your real frontend
+    origin: process.env.NODE_ENV === 'production'
+      ? 'https://workhubbb.netlify.app' // ✅ Netlify frontend
       : 'http://localhost:3000',
     methods: ["GET", "POST"],
     credentials: true,
@@ -47,14 +45,13 @@ app.use(express.urlencoded({ extended: true }));
 
 // CORS
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? 'https://workhubbb.netlify.app'    // ✅ your real frontend
+  origin: process.env.NODE_ENV === 'production'
+    ? 'https://workhubbb.netlify.app'
     : 'http://localhost:3000',
   credentials: true,
 }));
 
-
-// Static files for default avatars and uploaded files
+// Static files
 app.use("/public", express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -68,25 +65,25 @@ if (process.env.NODE_ENV !== 'production') {
 
 // Rate limiter
 app.use(rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000,
+  max: 100,
 }));
 
-// 🚨 SESSION CONFIGURATION FOR PASSPORT 🚨
+// Session config for Passport
 app.use(cookieParser());
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'your_super_secret_key', // Replace with a strong key or env var
-    resave: false, // Don't save session if unmodified
-    saveUninitialized: false, // Don't create session until something is stored
+    secret: process.env.SESSION_SECRET || 'your_super_secret_key',
+    resave: false,
+    saveUninitialized: false,
     cookie: { 
-        secure: process.env.NODE_ENV === 'production', // Set to true if using HTTPS
+        secure: process.env.NODE_ENV === 'production',
         httpOnly: true,
-        maxAge: 1000 * 60 * 60 * 24 // 24 hours
+        maxAge: 1000 * 60 * 60 * 24
     }
 }));
 
 app.use(passport.initialize());
-app.use(passport.session()); // 👈 REQUIRED for OAuth flow to function
+app.use(passport.session());
 
 // ------------------------
 // Routes
@@ -119,32 +116,18 @@ const { markAttendance } = require('./controllers/attendanceController');
 io.on('connection', (socket) => {
   console.log(`✅ Socket.IO: Client connected with ID: ${socket.id}`);
 
-  // Listen for an attendance update from the front end
   socket.on('update_attendance', async ({ userId, status }) => {
     try {
-      // Mock req and res to reuse the existing Express controller
       const req = { user: { _id: userId }, body: { status } };
-      const res = {
-        status: (code) => ({ json: (data) => {
-          // You could log the result here, but we don't need to send a response back
-        } }),
-        json: (data) => {}
-      };
-      
-      // Call the controller to save the change to the database
+      const res = { status: () => ({ json: () => {} }), json: () => {} };
       await markAttendance(req, res);
-
-      // Emit the update to all clients to keep them in sync
       io.emit('attendance_updated', { userId, status });
-
     } catch (error) {
-      console.error('Socket.IO: Error updating attendance:', error.message);
+      console.error('Socket.IO Error:', error.message);
     }
   });
 
-  socket.on('disconnect', () => {
-    console.log('❌ Socket.IO: Client disconnected:', socket.id);
-  });
+  socket.on('disconnect', () => console.log('❌ Client disconnected:', socket.id));
 });
 
 // ------------------------
@@ -174,5 +157,5 @@ app.use((err, req, res, next) => {
 // ------------------------
 // Start server
 // ------------------------
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 httpServer.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
