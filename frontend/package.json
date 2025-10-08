@@ -1,6 +1,7 @@
 {
   "name": "work-sheet-frontend",
   "version": "1.0.0",
+  "homepage": ".",
   "description": "Frontend for Work Sheet App",
   "main": "index.js",
   "proxy": "http://localhost:5000",
