@@ -383,7 +383,7 @@ const Login = ({ onLogin }) => {
                 className="form-label text-secondary"
                 style={{ fontWeight: 500, fontSize: "15px" }}
               >
-                Enter OTP
+                Enter OTP (pls check spam also)
               </label>
               <input
                 type="text"
