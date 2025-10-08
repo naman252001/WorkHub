@@ -9,6 +9,8 @@ const userSchema = new mongoose.Schema(
     password: { type: String }, // Optional for OAuth users
     role: { type: String, required: true, enum: ["Employee", "Manager"] },
     dateOfBirth: { type: Date },
+    lastOTPLoginDate: { type: String}, // storing date as string (e.g., "Wed Oct 08 2025")
+
 
     // Contact & Company Info
     phone: { type: String, trim: true },
