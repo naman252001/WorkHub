@@ -315,16 +315,14 @@ io.on('connection', (socket) => {
 require("./utils/birthdayCron");
 require("./utils/attendanceCron");
 
-// ------------------------
-// ✅ Serve React frontend build for Render
-// ------------------------
-const buildPath = path.join(__dirname, 'frontend', 'build'); // change 'frontend' to your actual folder
+// ✅ Serve React frontend build for Render (fixed path)
+const buildPath = path.join(__dirname, '../frontend/build');
 app.use(express.static(buildPath));
 
-// ✅ Handle client-side routing for React
 app.get('*', (req, res) => {
   res.sendFile(path.join(buildPath, 'index.html'));
 });
+
 
 // ------------------------
 // Start server
