@@ -178,6 +178,8 @@
 // httpServer.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 
 
+// backend/server.js
+
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -212,11 +214,11 @@ app.set('trust proxy', 1);
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:3000'; 
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
-  cors: {
-    origin: FRONTEND_URL,
-    methods: ["GET", "POST"],
-    credentials: true,
-  },
+    cors: {
+        origin: FRONTEND_URL,
+        methods: ["GET", "POST"],
+        credentials: true,
+    },
 });
 
 // ------------------------
@@ -226,8 +228,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(cors({
-  origin: FRONTEND_URL,
-  credentials: true,
+    origin: FRONTEND_URL,
+    credentials: true,
 }));
 
 app.use("/public", express.static(path.join(__dirname, "public")));
@@ -236,31 +238,31 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(helmet());
 
 if (process.env.NODE_ENV !== 'production') {
-  app.use(morgan('dev'));
+    app.use(morgan('dev'));
 }
 
 app.use(rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
+    windowMs: 15 * 60 * 1000,
+    max: 100,
 }));
 
 app.use(cookieParser());
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'your_super_secret_key',
-  resave: false,
-  saveUninitialized: false,
-  cookie: { 
-    secure: process.env.NODE_ENV === 'production',
-    httpOnly: true,
-    maxAge: 1000 * 60 * 60 * 24
-  }
+    secret: process.env.SESSION_SECRET || 'your_super_secret_key',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { 
+        secure: process.env.NODE_ENV === 'production',
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24
+    }
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 // ------------------------
-// Routes
+// Routes (Backend API)
 // ------------------------
 const authRoutes = require('./routes/authRoutes');
 const workRoutes = require('./routes/workRoutes'); 
@@ -282,31 +284,32 @@ app.use('/api/leave', leaveRoutes);
 app.use('/api/holidays', holidayRoutes);
 app.use("/test", testRoutes);
 
+
 // ------------------------
 // Socket.IO Logic
 // ------------------------
 const { markAttendance } = require('./controllers/attendanceController');
 
 io.on('connection', (socket) => {
-  console.log(`✅ Socket.IO: Client connected with ID: ${socket.id}`);
+    console.log(`✅ Socket.IO: Client connected with ID: ${socket.id}`);
 
-  socket.on('update_attendance', async ({ userId, status }) => {
-    try {
-      const req = { user: { _id: userId }, body: { status } };
-      const res = {
-        status: (code) => ({ json: (data) => {} }),
-        json: (data) => {}
-      };
-      await markAttendance(req, res);
-      io.emit('attendance_updated', { userId, status });
-    } catch (error) {
-      console.error('Socket.IO: Error updating attendance:', error.message);
-    }
-  });
+    socket.on('update_attendance', async ({ userId, status }) => {
+        try {
+            const req = { user: { _id: userId }, body: { status } };
+            const res = {
+                status: (code) => ({ json: (data) => {} }),
+                json: (data) => {}
+            };
+            await markAttendance(req, res);
+            io.emit('attendance_updated', { userId, status });
+        } catch (error) {
+            console.error('Socket.IO: Error updating attendance:', error.message);
+        }
+    });
 
-  socket.on('disconnect', () => {
-    console.log('❌ Socket.IO: Client disconnected:', socket.id);
-  });
+    socket.on('disconnect', () => {
+        console.log('❌ Socket.IO: Client disconnected:', socket.id);
+    });
 });
 
 // ------------------------
@@ -315,12 +318,23 @@ io.on('connection', (socket) => {
 require("./utils/birthdayCron");
 require("./utils/attendanceCron");
 
-// ✅ Serve React frontend build for Render (fixed path)
+
+// ---------------------------------------------
+// ✅ FRONTEND STATIC SERVING (THE CORRECT FIX) ✅
+// ---------------------------------------------
+// IMPORTANT: This section MUST come after all of your /api/ and /test routes.
+
 const buildPath = path.join(__dirname, '../frontend/build');
+
+// 1. Serve static assets (CSS, JS files, images) from the built frontend
 app.use(express.static(buildPath));
 
+// 2. The CATCH-ALL Route: Send index.html for all other GET requests
+// This handles client-side routing (like /login on refresh)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(buildPath, 'index.html'));
+    // Ensure the request is not for a specific asset that wasn't found
+    // If it falls here, it's treated as a route the client-side router handles.
+    res.sendFile(path.join(buildPath, 'index.html'));
 });
 
 
