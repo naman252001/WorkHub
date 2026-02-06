@@ -11,11 +11,11 @@ import ManagerDashboard from "./pages/ManagerDashboard";
 import EmployeeDetails from "./pages/EmployeeDetails";
 import ManagerPastWork from "./pages/ManagerPastWork";
 import WelcomePage from "./pages/WelcomePage";
-import Attendance from "./components/Attendance";
-import LeaveForm from "./components/LeaveForm";
+// import Attendance from "./components/Attendance";
+// import LeaveForm from "./components/LeaveForm";
 import Profile from "./pages/ProfilePage";
-import ManagerAttendanceDashboard from "./pages/ManagerAttendanceDashboard";
-import ManagerLeaveApplications from "./pages/ManagerLeaveApplications";
+// import ManagerAttendanceDashboard from "./pages/ManagerAttendanceDashboard";
+// import ManagerLeaveApplications from "./pages/ManagerLeaveApplications";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 // NEW IMPORTS for Social Auth Flow
@@ -114,8 +114,8 @@ function App() {
                     }
                   />
                   <Route path="/past-work" element={<PastWorkPanel />} />
-                  <Route path="/attendance" element={<Attendance />} />
-                  <Route path="/leave/apply" element={<LeaveForm />} />
+                  // <Route path="/attendance" element={<Attendance />} />
+                  // <Route path="/leave/apply" element={<LeaveForm />} />
                 </>
               )}
 
@@ -125,11 +125,11 @@ function App() {
                   <Route path="/past-work" element={<ManagerPastWork />} />
                   <Route
                     path="/attendance"
-                    element={<ManagerAttendanceDashboard />}
+                    // element={<ManagerAttendanceDashboard />}
                   />
                   <Route
                     path="/manager-leave-applications"
-                    element={<ManagerLeaveApplications />}
+                    // element={<ManagerLeaveApplications />}
                   />
                 </>
               )}
